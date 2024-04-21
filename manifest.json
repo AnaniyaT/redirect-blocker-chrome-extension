@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Redirect Blocker",
+  "version": "1.0",
+  "description": "Automatically block redirects on websites that you allow for.",
+  "action": {
+    "default_title": "Redirect Blocker",
+    "default_popup": "popup.html"
+  },
+  
+  "permissions" : [
+    "webRequest",
+    "webNavigation",
+    "tabs",
+    "scripting",
+    "declarativeNetRequest",
+    "storage"
+  ],
+  "host_permissions": [
+    "*://bflix.io/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": ["scripts.js"],
+      "css": ["style.css"]
+    }
+  ]
+}

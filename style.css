@@ -1,0 +1,95 @@
+
+.redirect-block-body {
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    font-family: "Poppins", sans-serif;
+    min-width: 20rem;
+    --main-color: rgb(115, 240, 108);
+    --button-hover-color: rgb(114, 219, 109);
+    --url-item-color: rgb(249, 218, 218);
+    --text-color: #333;
+}
+
+.redirect-block-header1 {
+    color: var(--text-color);
+    background-color: var(--main-color);
+    padding: 1rem 1rem;
+    margin: 0;
+}
+
+.url-list-container {
+    padding: .5rem 1rem;
+    max-height: 30rem;
+    overflow-y: auto;
+}
+
+.url-list {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.url-list > div {
+    padding: .5rem;
+    background-color: var(--url-item-color);
+    border-radius: .3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.url-list > div > button {
+    background-color: transparent;
+    border: 1px solid rgb(247, 90, 90); 
+    font-family: "Poppins", sans-serif;
+    padding: .1rem .4rem;
+    border-radius: 1rem;
+    color: rgb(247, 90, 90);
+    cursor: pointer;
+}
+
+.add-url-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    padding: 1rem;
+}
+
+.add-url-container input {
+    padding: .5rem;
+    border: none;
+    border-radius: .3rem;
+    font-family: "Poppins", sans-serif;
+}
+
+.add-url-container button {
+    font-family: "Poppins", sans-serif;
+    width: 100%;
+    padding: .7rem;
+    border: none;
+    border-radius: .3rem;
+    background-color: var(--main-color);
+    color: var(--text-color);
+    cursor: pointer;
+    margin: .5rem auto;
+    font-weight: 700;
+}
+
+.add-url-container button:hover {
+    background-color: var(--button-hover-color);
+}
+
+.add-url-container button:active {
+    background-color: var(--main-color);
+    transform: scale(0.95);
+    transition: transform .1s;
+}
+
+#ananas {
+    position: fixed;
+    bottom: .2rem;
+    right: 1rem;
+    color: #777;
+    font: 200 .5rem "Poppins", sans-serif;
+}
