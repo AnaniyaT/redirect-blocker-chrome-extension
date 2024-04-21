@@ -16,7 +16,6 @@ function addCurrentTabUrl() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         const tab = tabs[0];
         const url = tab.url;
-        console.log(tab.url)
         const mainUrl = new URL(url).hostname;
         addUrl(mainUrl);
     });
