@@ -16,21 +16,24 @@ function addCurrentTabUrl() {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
         const tab = tabs[0];
         const url = tab.url;
+
+        // don't add it if it's a chrome tab
+        if (url.includes("chrome://")) {
+            return;
+        }
+
         const mainUrl = new URL(url).hostname;
         addUrl(mainUrl);
     });
 }
 
 function addUrl(url) {
-    if (url === "newtab") {
-        return;
-    }
-    
     for (let i = 0; i < urls.length; i++) {
         if (urls[i] === url) {
             return;
         }
     }
+
     urls.push(url);
     chrome.storage.sync.set({ urls: urls });
     renderUrls();
