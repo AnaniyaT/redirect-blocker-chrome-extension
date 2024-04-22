@@ -22,7 +22,7 @@ function check(openerUrl, tabUrl) {
     let flag = false;
 
     for (url of urls) {
-        if (openerUrl.includes(url) && (tabUrl == null || !tabUrl.includes(url))) {
+        if (openerUrl.includes(url) && (tabUrl == null || (!tabUrl.includes(url) && !tabUrl.includes("chrome://")))) {
             flag = true;
             break;
         }
