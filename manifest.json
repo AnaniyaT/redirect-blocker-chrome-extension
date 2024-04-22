@@ -9,16 +9,10 @@
   },
   
   "permissions" : [
-    "webRequest",
-    "webNavigation",
     "tabs",
-    "scripting",
-    "declarativeNetRequest",
     "storage"
   ],
-  "host_permissions": [
-    "*://bflix.io/*"
-  ],
+  
   "background": {
     "service_worker": "background.js"
   }
