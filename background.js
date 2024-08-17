@@ -1,6 +1,6 @@
 
-
 let urls = [];
+let fromPopup = null;
 
 function updateUrls(newUrls) {
     urls = newUrls;
@@ -19,23 +19,26 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 });
 
 function check(openerUrl, tabUrl) {
-    let flag = false;
-
-    for (url of urls) {
-        if (openerUrl.includes(url) && (tabUrl == null || (!tabUrl.includes(url) && !tabUrl.includes("chrome://")))) {
-            flag = true;
-            break;
-        }
-    }
-
-    return flag;
+    return urls.some(
+        url => openerUrl.includes(url) && 
+        (tabUrl === undefined || (!tabUrl.includes(url) && !tabUrl.includes("chrome://")))
+    )
 }
 
 chrome.tabs.onCreated.addListener(async function(tab)  {
- const openerTabId = tab.openerTabId
- const openerTab = await chrome.tabs.get(openerTabId);
+    const openerTabId = tab.openerTabId
+    const openerTab = await chrome.tabs.get(openerTabId);
 
- if (check(openerTab.url, tab.pendingUrl)) {
+    if (fromPopup === null && check(openerTab.url, tab.pendingUrl)) {
         await chrome.tabs.remove(tab.id)
-     }
+    }
+
+    fromPopup = null;
 })
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.type === 'pass') {
+        fromPopup = request.url;
+        sendResponse({ message: 'pass sent' });
+    }
+});

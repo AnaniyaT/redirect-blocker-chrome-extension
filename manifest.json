@@ -10,7 +10,13 @@
   
   "permissions" : [
     "tabs",
-    "storage"
+    "storage",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
   ],
   
   "background": {

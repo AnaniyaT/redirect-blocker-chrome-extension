@@ -46,20 +46,33 @@ function removeUrl(url) {
     renderUrls();
 }
 
+function giveOneTimePass(url) {
+    chrome.runtime.sendMessage({ type: "pass", url: url }, function(response) {});
+}
+
 function renderUrls() {
     urlListDiv.innerHTML = '';
 
     urls.forEach(function(url) {
-        const urlElement = document.createElement('div');
+        const urlContainer = document.createElement('div');
+        const urlLink = document.createElement('a');
+        urlLink.onclick = function() {
+            giveOneTimePass(url);
+        }
+
+        urlLink.href = `http://${url}`;
+        urlLink.target = '_blank';
+        urlLink.innerText = url;
+
         const deleteButton = document.createElement('button');
         deleteButton.innerText = 'Delete';
         deleteButton.addEventListener('click', function() {
             removeUrl(url);
         });
 
-        urlElement.innerText = url;
-        urlElement.appendChild(deleteButton);
-        urlListDiv.appendChild(urlElement);
+        urlContainer.appendChild(urlLink);
+        urlContainer.appendChild(deleteButton);
+        urlListDiv.appendChild(urlContainer);
     });
 }
 

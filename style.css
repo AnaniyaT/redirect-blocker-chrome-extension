@@ -1,10 +1,11 @@
 
-.redirect-block-body {
+ .redirect-block-body{
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
     font-family: "Poppins", sans-serif;
     min-width: 20rem;
+    overflow-y: hidden;
     --main-color: rgb(115, 240, 108);
     --button-hover-color: rgb(114, 219, 109);
     --url-item-color: rgb(249, 218, 218);
@@ -20,12 +21,15 @@
 
 .url-list-container {
     padding: .5rem 1rem;
-    overflow-y: auto;
+    height: 23rem;
+    overflow: auto;
+    /* overflow-y: auto; */
 }
 
 .url-list {
     display: flex;
     flex-direction: column;
+    /* overflow-y: auto; */
     gap: .5rem;
 }
 
@@ -48,11 +52,27 @@
     cursor: pointer;
 }
 
+.url-list > div > button:hover {
+    background-color: rgb(247, 90, 90);
+    color: white;
+}
+
+.url-list > div > a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.url-list > div > a:hover {
+    text-decoration: underline;
+}
+
 .add-url-container {
     display: flex;
     flex-direction: column;
     gap: .5rem;
     padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: .3rem;
 }
 
 .add-url-container input {
@@ -92,3 +112,23 @@
     color: #777;
     font: 200 .5rem "Poppins", sans-serif;
 }
+
+/* customize scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #888;
+}
+
